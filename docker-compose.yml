@@ -1,0 +1,35 @@
+services:
+    nginx_kafka:
+        container_name: nginx_kafka
+        build:
+            context: ./docker/nginx
+            dockerfile: Dockerfile
+        ports:
+            - "${APP_PORT}:80"
+        networks:
+            - internal
+        volumes:
+            - ./:/var/www/html/
+            - ./storage/logs/nginx:/var/log/nginx/
+    php_kafka:
+        container_name: php_kafka
+        build:
+            context: ./docker/php
+            dockerfile: DockerfileDev
+            args:
+                user: ${USER}
+                uid: 1000
+                APP_ENV: ${APP_ENV}
+        networks:
+            - internal
+        volumes:
+            - ./:/var/www/html/
+            - ./storage/logs/php.log:/var/log/fpm-php.www.log
+networks:
+    internal:
+        driver: bridge
+volumes:
+    db-data-tech_test:
+        driver: local
+    minio_data:
+        driver: local
