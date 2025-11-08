@@ -5,6 +5,7 @@ use App\Casts\UuidCast;
 use App\Modules\User\Flags\UserPermissionsFlags;
 use App\Support\Models\HasUuid7;
 use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,7 +20,6 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string $name
  * @property string $email
  * @property string $password
- * @property UserPermissionsFlags permissionFlag
  * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -27,14 +27,14 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  *
  * @method static UserFactory factory($count = null, $state = [])
  */
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory;
     use Notifiable;
     use HasApiTokens;
     use SoftDeletes;
-    use HasUuid7;
+    use HasUuids;
 
     public $incrementing = false;
 
@@ -51,7 +51,6 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'uuid',
-        'permission_flag'
     ];
 
     /**
@@ -73,23 +72,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [
             'email_verified_at' => 'immutable_datetime',
-            'password' => 'hashed',
-            'uuid' => UuidCast::class
+            'password' => 'hashed'
         ];
-    }
-
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-
-    public function getJWTCustomClaims(): array
-    {
-        return [];
-    }
-
-    public function permissionFlag(): UserPermissionsFlags
-    {
-        return new UserPermissionsFlags('permission_flag', $this);
     }
 }

@@ -8,11 +8,11 @@ use Junges\Kafka\Message\Message;
 readonly class ProducerService
 {
     private mixed $kafka;
-    public function __construct(private string $topic, private Message $message)
+    public function __construct(private string $topic, private Message $message, string $broker = 'broker')
     {
-        $this->kafka = Kafka::publish(broker: 'broker')
-            ->withMessage($this->message)
-            ->onTopic($this->topic);
+        $this->kafka = Kafka::publish(broker: $broker)
+            ->withMessage(message: $this->message)
+            ->onTopic(topic: $this->topic);
     }
 
     /**

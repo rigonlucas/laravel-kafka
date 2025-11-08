@@ -2,14 +2,14 @@
 
 namespace App\Services\Kafka\Topics\AuditAuth\V1\Consumers;
 
-use App\Services\Kafka\Core\MessageHandlerInterface;
+use App\Services\Kafka\Core\ConsumerMessageHandler;
 use App\Services\Kafka\Enums\AuthTopicsEnum;
 use App\Services\Kafka\Topics\AuditAuth\V1\Process\LoginProcess;
 use App\Services\Kafka\Topics\AuditAuth\V1\Process\RecoveryProcess;
 use Junges\Kafka\Contracts\ConsumerMessage;
 use Junges\Kafka\Contracts\MessageConsumer;
 
-readonly class AuditAuthHandler implements MessageHandlerInterface
+readonly class AuditAuthHandlerConsumer implements ConsumerMessageHandler
 {
     public function __invoke(ConsumerMessage $message, MessageConsumer $consumer): bool
     {

@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Services\Kafka\Core\ConsumerService;
 use App\Services\Kafka\Enums\AuthTopicsEnum;
 use App\Services\Kafka\Enums\GroupIdEnum;
-use App\Services\Kafka\Topics\AuditAuth\V1\Consumers\AuditAuthHandler;
+use App\Services\Kafka\Topics\AuditAuth\V1\Consumers\AuditAuthHandlerConsumer;
 use Carbon\Exceptions\Exception;
 use Illuminate\Console\Command;
 use Junges\Kafka\Exceptions\ConsumerException;
@@ -26,7 +26,7 @@ class KafkaConsumerAuditC2Command extends Command
         new ConsumerService(
             [AuthTopicsEnum::AUDIT_LOGIN_V1->value],
             GroupIdEnum::SERVICE_2->value,
-            new AuditAuthHandler()
+            new AuditAuthHandlerConsumer()
         )->execute();
     }
 }

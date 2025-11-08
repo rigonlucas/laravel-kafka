@@ -5,7 +5,7 @@ namespace App\Services\Kafka\Core;
 use Junges\Kafka\Contracts\ConsumerMessage;
 use Junges\Kafka\Contracts\MessageConsumer;
 
-interface MessageHandlerInterface
+interface ConsumerMessageHandler
 {
     public function __invoke(ConsumerMessage $message, MessageConsumer $consumer): bool;
 }

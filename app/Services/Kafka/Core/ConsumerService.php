@@ -13,12 +13,13 @@ readonly class ConsumerService
     public function __construct(
         private array $topics,
         private string $consumerGroupId,
-        private MessageHandlerInterface $messageHandler
+        private ConsumerMessageHandler $messageHandler,
+        string $broker = 'broker',
     ) {
-        $this->kafka = Kafka::consumer($this->topics)
-            ->withBrokers('broker')
-            ->withConsumerGroupId($this->consumerGroupId)
-            ->withHandler($this->messageHandler)
+        $this->kafka = Kafka::consumer(topics: $this->topics)
+            ->withBrokers(brokers: $broker)
+            ->withConsumerGroupId(groupId: $this->consumerGroupId)
+            ->withHandler(handler: $this->messageHandler)
             ->build();
     }
 
