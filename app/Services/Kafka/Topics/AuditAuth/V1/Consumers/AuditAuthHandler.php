@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Kafka\Topics\AuditAuthV1\Consumers;
+namespace App\Services\Kafka\Topics\AuditAuth\V1\Consumers;
 
 use App\Services\Kafka\Core\MessageHandlerInterface;
 use App\Services\Kafka\Enums\AuthTopicsEnum;
-use App\Services\Kafka\Topics\AuditAuthV1\Process\LoginProcess;
-use App\Services\Kafka\Topics\AuditAuthV1\Process\RecoveryProcess;
+use App\Services\Kafka\Topics\AuditAuth\V1\Process\LoginProcess;
+use App\Services\Kafka\Topics\AuditAuth\V1\Process\RecoveryProcess;
 use Junges\Kafka\Contracts\ConsumerMessage;
 use Junges\Kafka\Contracts\MessageConsumer;
 

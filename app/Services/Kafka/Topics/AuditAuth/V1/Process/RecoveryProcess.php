@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Kafka\Topics\AuditAuthV1\Process;
+namespace App\Services\Kafka\Topics\AuditAuth\V1\Process;
 
 use Junges\Kafka\Contracts\ConsumerMessage;
 

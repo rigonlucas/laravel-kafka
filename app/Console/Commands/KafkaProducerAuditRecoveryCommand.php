@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Services\Kafka\Core\ProducerService;
 use App\Services\Kafka\Enums\AuthTopicsEnum;
-use App\Services\Kafka\Topics\AuditAuthV1\Messages\AuditAuthMessage;
+use App\Services\Kafka\Topics\AuditAuth\V1\Messages\AuditAuthMessage;
 use Illuminate\Console\Command;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Uid\Ulid;
