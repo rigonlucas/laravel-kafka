@@ -3,10 +3,12 @@
 namespace App\Console\Commands;
 
 use App\Services\Kafka\ConsumerService;
-use App\Services\Kafka\Topics\AuditLoginV1\Consumer\AuditLoginHandler;
-use App\Services\Kafka\Topics\AuditLoginV1\Enums\GroupIdEnum;
-use App\Services\Kafka\Topics\AuditLoginV1\Enums\TopicsEnum;
+use App\Services\Kafka\Topics\AuditAuthV1\Consumer\AuditLoginHandler;
+use App\Services\Kafka\Topics\AuditAuthV1\Enums\GroupIdEnum;
+use App\Services\Kafka\Topics\AuditAuthV1\Enums\TopicsEnum;
+use Carbon\Exceptions\Exception;
 use Illuminate\Console\Command;
+use Junges\Kafka\Exceptions\ConsumerException;
 
 class KafkaConsumerAuditC1Command extends Command
 {
@@ -14,6 +16,10 @@ class KafkaConsumerAuditC1Command extends Command
 
     protected $description = 'Consome mensagens';
 
+    /**
+     * @throws Exception
+     * @throws ConsumerException
+     */
     public function handle(): void
     {
         $this->info("Consumindo mensagens do tópico audit-login-v1 no consumer 1...");

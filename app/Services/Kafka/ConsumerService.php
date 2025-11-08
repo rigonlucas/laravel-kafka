@@ -2,6 +2,8 @@
 
 namespace App\Services\Kafka;
 
+use Carbon\Exceptions\Exception;
+use Junges\Kafka\Exceptions\ConsumerException;
 use Junges\Kafka\Facades\Kafka;
 
 readonly class ConsumerService
@@ -20,6 +22,10 @@ readonly class ConsumerService
             ->build();
     }
 
+    /**
+     * @throws Exception
+     * @throws ConsumerException
+     */
     public function execute(): void
     {
         $this->kafka->consume();

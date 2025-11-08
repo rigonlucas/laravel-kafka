@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Kafka\Topics\AuditLoginV1\Message;
+namespace App\Services\Kafka\Topics\AuditAuthV1\Message;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Support\Arrayable;

@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Services\Kafka\ProducerService;
-use App\Services\Kafka\Topics\AuditLoginV1\Enums\TopicsEnum;
-use App\Services\Kafka\Topics\AuditLoginV1\Message\AuditLoginMessage;
+use App\Services\Kafka\Topics\AuditAuthV1\Enums\TopicsEnum;
+use App\Services\Kafka\Topics\AuditAuthV1\Message\AuditLoginMessage;
 use Illuminate\Console\Command;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Uid\Ulid;

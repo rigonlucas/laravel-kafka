@@ -1,19 +1,12 @@
 <?php
 
-namespace App\Services\Kafka\Topics\AuditLoginV1\Consumer;
+namespace App\Services\Kafka\Topics\AuditAuthV1\Process;
 
-use App\Services\Kafka\MessageHandlerInterface;
 use Junges\Kafka\Contracts\ConsumerMessage;
-use Junges\Kafka\Contracts\MessageConsumer;
 
-readonly class AuditLoginHandler implements MessageHandlerInterface
+class LoginProcess
 {
-    public function __invoke(ConsumerMessage $message, MessageConsumer $consumer): bool
-    {
-        return $this->process($message);
-    }
-
-    private function process(ConsumerMessage $message): bool
+    public static function process(ConsumerMessage $message): bool
     {
         echo "Key: ";
         echo "\t" . $message->getKey() . PHP_EOL;
