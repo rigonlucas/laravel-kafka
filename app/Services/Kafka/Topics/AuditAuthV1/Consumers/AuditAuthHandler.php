@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Kafka\Topics\AuditAuthV1\Consumer;
+namespace App\Services\Kafka\Topics\AuditAuthV1\Consumers;
 
 use App\Services\Kafka\MessageHandlerInterface;
 use App\Services\Kafka\Topics\AuditAuthV1\Enums\AuthTopicsEnum;

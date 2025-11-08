@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Services\Kafka\ConsumerService;
-use App\Services\Kafka\Topics\AuditAuthV1\Consumer\AuditAuthHandler;
-use App\Services\Kafka\Topics\AuditAuthV1\Enums\GroupIdEnum;
+use App\Services\Kafka\Topics\AuditAuthV1\Consumers\AuditAuthHandler;
 use App\Services\Kafka\Topics\AuditAuthV1\Enums\AuthTopicsEnum;
+use App\Services\Kafka\Topics\AuditAuthV1\Enums\GroupIdEnum;
 use Carbon\Exceptions\Exception;
 use Illuminate\Console\Command;
 use Junges\Kafka\Exceptions\ConsumerException;
