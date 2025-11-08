@@ -13,7 +13,7 @@ class DeadLetterProducerService
         string $key,
         array $headers = []
     ): true {
-        Kafka::publish('broker')
+        Kafka::publish(broker: 'broker')
             ->onTopic(topic: AuthTopicsEnum::DEAD_LETTER_QUEUE->value)
             ->withBodyKey(key: 'original_topic', message: $topic)
             ->withBodyKey(key:'payload', message: $payload)
