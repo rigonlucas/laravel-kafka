@@ -17,8 +17,8 @@ class DeadLetterProducerService
             ->onTopic(topic: AuthTopicsEnum::DEAD_LETTER_QUEUE->value)
             ->withBodyKey(key: 'original_topic', message: $topic)
             ->withBodyKey(key:'payload', message: $payload)
-            ->withBodyKey(key: '', message: $key)
-            ->withBodyKey(key: '', message: $headers)
+            ->withBodyKey(key: 'key', message: $key)
+            ->withBodyKey(key: 'headers', message: $headers)
             ->send();
 
         return true;
