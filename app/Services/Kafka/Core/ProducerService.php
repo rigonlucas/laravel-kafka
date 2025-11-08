@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Kafka;
+namespace App\Services\Kafka\Core;
 
 use Junges\Kafka\Facades\Kafka;
 use Junges\Kafka\Message\Message;

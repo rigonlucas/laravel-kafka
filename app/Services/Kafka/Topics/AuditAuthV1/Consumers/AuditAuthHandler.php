@@ -2,8 +2,8 @@
 
 namespace App\Services\Kafka\Topics\AuditAuthV1\Consumers;
 
-use App\Services\Kafka\MessageHandlerInterface;
-use App\Services\Kafka\Topics\AuditAuthV1\Enums\AuthTopicsEnum;
+use App\Services\Kafka\Core\MessageHandlerInterface;
+use App\Services\Kafka\Enums\AuthTopicsEnum;
 use App\Services\Kafka\Topics\AuditAuthV1\Process\LoginProcess;
 use App\Services\Kafka\Topics\AuditAuthV1\Process\RecoveryProcess;
 use Junges\Kafka\Contracts\ConsumerMessage;

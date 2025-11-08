@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Kafka;
+namespace App\Services\Kafka\Core;
 
 use Junges\Kafka\Contracts\ConsumerMessage;
 use Junges\Kafka\Contracts\MessageConsumer;

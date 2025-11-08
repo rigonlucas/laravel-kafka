@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Kafka\Topics\AuditAuthV1\Enums;
+namespace App\Services\Kafka\Enums;
 
 enum AuthTopicsEnum: string
 {
