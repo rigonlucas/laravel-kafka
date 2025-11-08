@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Services\Kafka\Core\ConsumerService;
+use App\Services\Kafka\Core\Consumer\ConsumerService;
 use App\Services\Kafka\Enums\AuthTopicsEnum;
 use App\Services\Kafka\Enums\GroupIdEnum;
 use App\Services\Kafka\Topics\AuditAuth\V1\Consumers\AuditAuthHandlerConsumer;

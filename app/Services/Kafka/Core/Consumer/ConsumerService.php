@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Kafka\Core;
+namespace App\Services\Kafka\Core\Consumer;
 
 use Carbon\Exceptions\Exception;
 use Junges\Kafka\Exceptions\ConsumerException;

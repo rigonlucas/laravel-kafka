@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Services\Kafka\Core\ConsumerService;
+use App\Services\Kafka\Core\Consumer\ConsumerService;
 use App\Services\Kafka\Enums\AuthTopicsEnum;
 use App\Services\Kafka\Enums\GroupIdEnum;
 use App\Services\Kafka\Topics\AuditAuth\V1\Consumers\AuditAuthHandlerConsumer;
@@ -27,6 +27,7 @@ class KafkaConsumerAuditC1Command extends Command
             [
                 AuthTopicsEnum::AUDIT_LOGIN_V1->value,
                 AuthTopicsEnum::AUDIT_RECOVERY_V1->value,
+                'unknow-topic'
             ],
             GroupIdEnum::SERVICE_1->value,
             new AuditAuthHandlerConsumer()

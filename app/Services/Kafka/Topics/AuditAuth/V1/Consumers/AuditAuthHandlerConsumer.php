@@ -2,7 +2,8 @@
 
 namespace App\Services\Kafka\Topics\AuditAuth\V1\Consumers;
 
-use App\Services\Kafka\Core\ConsumerMessageHandler;
+use App\Services\Kafka\Core\Consumer\ConsumerMessageHandler;
+use App\Services\Kafka\Core\DeadLetter\DeadLetterProducerService;
 use App\Services\Kafka\Enums\AuthTopicsEnum;
 use App\Services\Kafka\Topics\AuditAuth\V1\Process\LoginProcess;
 use App\Services\Kafka\Topics\AuditAuth\V1\Process\RecoveryProcess;
@@ -16,7 +17,11 @@ readonly class AuditAuthHandlerConsumer implements ConsumerMessageHandler
         return match ($message->getTopicName()) {
             AuthTopicsEnum::AUDIT_LOGIN_V1->value => LoginProcess::process($message),
             AuthTopicsEnum::AUDIT_RECOVERY_V1->value => RecoveryProcess::process($message),
-            default => throw new \Exception('Unexpected match value: enviar para uma DLQ')
+            default => DeadLetterProducerService::sendToDLQ(
+                $message->getTopicName(),
+                $message->getBody(),
+                $message->getKey()
+            )
         };
     }
 }
