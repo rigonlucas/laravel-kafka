@@ -9,6 +9,7 @@ class RecoveryProcess
     public static function process(ConsumerMessage $message): bool
     {
         echo "------------------- RECOVERY -----------------" . PHP_EOL;
+        echo "------ TOPIC: " . $message->getTopicName() . " -----------------" . PHP_EOL;
         echo "Key: ";
         echo "\t" . $message->getKey() . PHP_EOL;
         echo "Body:" . PHP_EOL;
