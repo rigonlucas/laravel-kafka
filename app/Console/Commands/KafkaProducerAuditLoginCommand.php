@@ -3,13 +3,13 @@
 namespace App\Console\Commands;
 
 use App\Services\Kafka\ProducerService;
-use App\Services\Kafka\Topics\AuditAuthV1\Enums\TopicsEnum;
-use App\Services\Kafka\Topics\AuditAuthV1\Message\AuditLoginMessage;
+use App\Services\Kafka\Topics\AuditAuthV1\Enums\AuthTopicsEnum;
+use App\Services\Kafka\Topics\AuditAuthV1\Message\AuditAuthMessage;
 use Illuminate\Console\Command;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Uid\Ulid;
 
-class KafkaProducerAuditCommand extends Command
+class KafkaProducerAuditLoginCommand extends Command
 {
     protected $signature = 'kafka-producer:audit-login-v1';
 
@@ -22,7 +22,7 @@ class KafkaProducerAuditCommand extends Command
     {
         for ($i = 1; $i <= 2; $i++) {
             $accountUuid = Uuid::uuid7();
-            $auditMessage = new AuditLoginMessage(
+            $auditMessage = new AuditAuthMessage(
                 eventId: Ulid::generate(),
                 userName: fake()->name(),
                 action: 'login',
@@ -32,7 +32,7 @@ class KafkaProducerAuditCommand extends Command
                 accountUuid: $accountUuid
             );
 
-            $return = new ProducerService(TopicsEnum::AUDIT_LOGIN_V1->value, $auditMessage->getMessage())->execute();
+            $return = new ProducerService(AuthTopicsEnum::AUDIT_LOGIN_V1->value, $auditMessage->getMessage())->execute();
             $this->info(json_encode($return));
         }
     }

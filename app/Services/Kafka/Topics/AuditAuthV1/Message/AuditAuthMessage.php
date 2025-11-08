@@ -7,7 +7,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use Junges\Kafka\Message\Message;
 use Ramsey\Uuid\UuidInterface;
 
-readonly class AuditLoginMessage implements Arrayable
+readonly class AuditAuthMessage implements Arrayable
 {
     public function __construct(
         public string $eventId,

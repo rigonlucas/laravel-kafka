@@ -4,11 +4,11 @@ namespace App\Services\Kafka\Topics\AuditAuthV1\Process;
 
 use Junges\Kafka\Contracts\ConsumerMessage;
 
-class LoginProcess
+class RecoveryProcess
 {
     public static function process(ConsumerMessage $message): bool
     {
-        echo "------------------- LOGIN -------------------" . PHP_EOL;
+        echo "------------------- RECOVERY -----------------" . PHP_EOL;
         echo "Key: ";
         echo "\t" . $message->getKey() . PHP_EOL;
         echo "Body:" . PHP_EOL;
