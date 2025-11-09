@@ -33,7 +33,8 @@ kafka-run-class kafka.tools.GetOffsetShell --broker-list broker:29092 --topic au
 ```bash
 sudo rm -rf ./data/kafka ./data/zookeeper
 sudo mkdir -p ./data/kafka ./data/zookeeper
-sudo chmod -R 777 ./data
+sudo chown -R 1000:1000 ./data/kafka
+sudo chown -R 1000:1000 ./data/zookeeper
 ```
 7. Validar se o host do broker está acessível via nc
 ```bash

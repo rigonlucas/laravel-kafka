@@ -14,8 +14,9 @@ readonly class ConsumerService
         private array $topics,
         private string $consumerGroupId,
         private ConsumerMessageHandler $messageHandler,
-        string $broker = 'broker',
+        ?string $broker = null,
     ) {
+        $broker ??= config('kafka.brokers');
         $this->kafka = Kafka::consumer(topics: $this->topics)
             ->withBrokers(brokers: $broker)
             ->withConsumerGroupId(groupId: $this->consumerGroupId)

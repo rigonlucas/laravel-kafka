@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Services\Kafka\Topics\AuditAuth\V1\Process;
+namespace App\Services\Kafka\Topics\AuditAuth\V1\Consumers\Process;
 
 use Junges\Kafka\Contracts\ConsumerMessage;
 
-class RecoveryProcess
+class LoginProcess
 {
     public static function process(ConsumerMessage $message): bool
     {
-        echo "------------------- RECOVERY -----------------" . PHP_EOL;
-        echo "------ TOPIC: " . $message->getTopicName() . " -----------------" . PHP_EOL;
+        echo "------------------- LOGIN -------------------" . PHP_EOL;
+        echo "------ TOPIC: " . $message->getTopicName() . " ---------------" . PHP_EOL;
         echo "Key: ";
         echo "\t" . $message->getKey() . PHP_EOL;
         echo "Body:" . PHP_EOL;

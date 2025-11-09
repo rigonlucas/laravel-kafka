@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Services\Kafka\Core\ProducerService;
+use App\Services\Kafka\Core\Producer\ProducerService;
 use App\Services\Kafka\Enums\AuthTopicsEnum;
 use App\Services\Kafka\Topics\AuditAuth\V1\Messages\AuditAuthMessage;
 use Illuminate\Http\Request;

@@ -8,11 +8,11 @@ use Illuminate\Contracts\Support\Arrayable;
 use Junges\Kafka\Message\Message;
 use Ramsey\Uuid\UuidInterface;
 
-readonly class AuditAuthMessage implements Arrayable, Messageable
+readonly class AuditAccountRecoveryMessage implements Arrayable, Messageable
 {
     public function __construct(
         public string $eventId,
-        public string $userName,
+        public string $email,
         public string $action,
         public Carbon $timestamp,
         public string $ipAddress,
@@ -25,7 +25,7 @@ readonly class AuditAuthMessage implements Arrayable, Messageable
     {
         return [
             'event_id' => $this->eventId,
-            'user_name' => $this->userName,
+            'email' => $this->email,
             'action' => $this->action,
             'timestamp' => $this->timestamp->toIso8601String(),
             'ip_address' => $this->ipAddress,
@@ -40,7 +40,7 @@ readonly class AuditAuthMessage implements Arrayable, Messageable
             headers: [
                 'content-type' => 'application/json',
                 'account-uuid' => $this->accountUuid->toString(),
-                'message-type' => 'audit_auth_v1',
+                'message-type' => 'audit_account_recovery_v1',
             ],
             body: $this->toArray(),
             key: $this->accountUuid->toString()

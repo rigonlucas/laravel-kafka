@@ -3,10 +3,10 @@
 namespace App\Services\Kafka\Topics\AuditAuth\V1\Consumers;
 
 use App\Services\Kafka\Core\Consumer\ConsumerMessageHandler;
-use App\Services\Kafka\Core\DeadLetter\DeadLetterProducerService;
+use App\Services\Kafka\Core\DefaultDeadLetter\DeadLetterProducerService;
 use App\Services\Kafka\Enums\AuthTopicsEnum;
-use App\Services\Kafka\Topics\AuditAuth\V1\Process\LoginProcess;
-use App\Services\Kafka\Topics\AuditAuth\V1\Process\RecoveryProcess;
+use App\Services\Kafka\Topics\AuditAuth\V1\Consumers\Process\LoginProcess;
+use App\Services\Kafka\Topics\AuditAuth\V1\Consumers\Process\RecoveryProcess;
 use Junges\Kafka\Contracts\ConsumerMessage;
 use Junges\Kafka\Contracts\MessageConsumer;
 

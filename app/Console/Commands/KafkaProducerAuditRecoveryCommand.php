@@ -2,9 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Services\Kafka\Core\ProducerService;
-use App\Services\Kafka\Enums\AuthTopicsEnum;
-use App\Services\Kafka\Topics\AuditAuth\V1\Messages\AuditAuthMessage;
+use App\Services\Kafka\Topics\AuditAuth\V1\Messages\AuditAccountRecoveryMessage;
+use App\Services\Kafka\Topics\AuditAuth\V1\Producers\RecoveryAccountProducer;
 use Illuminate\Console\Command;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Uid\Ulid;
@@ -21,9 +20,9 @@ class KafkaProducerAuditRecoveryCommand extends Command
     public function handle(): void
     {
         $accountUuid = Uuid::uuid7();
-        $auditMessage = new AuditAuthMessage(
+        $auditMessage = new AuditAccountRecoveryMessage(
             eventId: Ulid::generate(),
-            userName: fake()->name(),
+            email: fake()->email(),
             action: 'recovery',
             timestamp: now(),
             ipAddress: fake()->ipv4(),
@@ -31,7 +30,7 @@ class KafkaProducerAuditRecoveryCommand extends Command
             accountUuid: $accountUuid
         );
 
-        $return = new ProducerService(AuthTopicsEnum::AUDIT_RECOVERY_V1->value, $auditMessage->getMessage())->execute();
+        $return = new RecoveryAccountProducer()->execute($auditMessage);
         $this->info(json_encode($return));
     }
 }
