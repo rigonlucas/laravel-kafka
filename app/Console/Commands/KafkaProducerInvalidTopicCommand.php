@@ -30,7 +30,7 @@ class KafkaProducerInvalidTopicCommand extends Command
             accountUuid: $accountUuid
         );
 
-        $return = new ProducerService('unknow-topic', $auditMessage->getMessage())->execute();
+        $return = new ProducerService(topic: 'unknow-topic', message: $auditMessage->getMessage())->execute();
         $this->info(json_encode($return));
     }
 }

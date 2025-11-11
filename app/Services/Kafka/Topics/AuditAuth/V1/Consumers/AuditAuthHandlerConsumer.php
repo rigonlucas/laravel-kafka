@@ -15,12 +15,13 @@ readonly class AuditAuthHandlerConsumer implements ConsumerMessageHandler
     public function __invoke(ConsumerMessage $message, MessageConsumer $consumer): bool
     {
         return match ($message->getTopicName()) {
-            AuthTopicsEnum::AUDIT_LOGIN_V1->value => LoginProcess::process($message),
-            AuthTopicsEnum::AUDIT_RECOVERY_V1->value => RecoveryProcess::process($message),
+            AuthTopicsEnum::AUDIT_LOGIN_V1->value => LoginProcess::process(message: $message),
+            AuthTopicsEnum::AUDIT_RECOVERY_V1->value => RecoveryProcess::process(message: $message),
             default => DeadLetterProducerService::sendToDLQ(
-                $message->getTopicName(),
-                $message->getBody(),
-                $message->getKey()
+                topic: $message->getTopicName(),
+                payload: $message->getBody(),
+                key: $message->getKey(),
+                headers: $message->getHeaders()
             )
         };
     }

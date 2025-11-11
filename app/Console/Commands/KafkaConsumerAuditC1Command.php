@@ -24,13 +24,13 @@ class KafkaConsumerAuditC1Command extends Command
     {
         $this->info("Consumindo mensagens do tópico [audit-login-v1, audit-recovery-v1] no consumer 1...");
         new ConsumerService(
-            [
+            topics: [
                 AuthTopicsEnum::AUDIT_LOGIN_V1->value,
                 AuthTopicsEnum::AUDIT_RECOVERY_V1->value,
                 'unknow-topic'
             ],
-            ConsumerGroupEnum::SERVICE_1->value,
-            new AuditAuthHandlerConsumer()
+            consumerGroupId: ConsumerGroupEnum::SERVICE_1->value,
+            messageHandler: new AuditAuthHandlerConsumer()
         )->execute();
     }
 }

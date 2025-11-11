@@ -10,6 +10,6 @@ class GenericAuthProducer
 {
     public function execute(Messageable $auditMessage, AuthTopicsEnum $authTopicsEnum): bool
     {
-        return new ProducerService($authTopicsEnum->value, $auditMessage->getMessage())->execute();
+        return new ProducerService(topic: $authTopicsEnum->value, message: $auditMessage->getMessage())->execute();
     }
 }

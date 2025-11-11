@@ -38,8 +38,8 @@ class LoginController extends Controller
         );
 
         new ProducerService(
-            AuthTopicsEnum::AUDIT_LOGIN_V1->value,
-            $auditMessage->getMessage()
+            topic: AuthTopicsEnum::AUDIT_LOGIN_V1->value,
+            message: $auditMessage->getMessage()
         )->execute();
 
         return response()->json([

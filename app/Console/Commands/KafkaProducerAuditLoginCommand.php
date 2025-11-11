@@ -32,7 +32,10 @@ class KafkaProducerAuditLoginCommand extends Command
                 accountUuid: $accountUuid
             );
 
-            $return = new GenericAuthProducer()->execute($auditMessage, AuthTopicsEnum::AUDIT_LOGIN_V1);
+            $return = new GenericAuthProducer()->execute(
+                auditMessage: $auditMessage,
+                authTopicsEnum: AuthTopicsEnum::AUDIT_LOGIN_V1
+            );
             $this->info(json_encode($return));
         }
     }

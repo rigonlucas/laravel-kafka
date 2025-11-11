@@ -31,7 +31,10 @@ class KafkaProducerAuditRecoveryCommand extends Command
             accountUuid: $accountUuid
         );
 
-        $return = new GenericAuthProducer()->execute($auditMessage, AuthTopicsEnum::AUDIT_RECOVERY_V1);
+        $return = new GenericAuthProducer()->execute(
+            auditMessage: $auditMessage,
+            authTopicsEnum: AuthTopicsEnum::AUDIT_RECOVERY_V1
+        );
         $this->info(json_encode($return));
     }
 }
