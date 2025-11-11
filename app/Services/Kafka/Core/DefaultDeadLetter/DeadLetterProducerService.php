@@ -15,7 +15,7 @@ class DeadLetterProducerService
     ): true {
         $broker ??= config('kafka.brokers');
         Kafka::publish(broker: $broker)
-            ->onTopic(topic: AuthTopicsEnum::DEAD_LETTER_QUEUE->value)
+            ->onTopic(topic: AuthTopicsEnum::AUTH_DEAD_LETTER_QUEUE->value)
             ->withBodyKey(key: 'original_topic', message: $topic)
             ->withBodyKey(key:'payload', message: $payload)
             ->withBodyKey(key: 'key', message: $key)

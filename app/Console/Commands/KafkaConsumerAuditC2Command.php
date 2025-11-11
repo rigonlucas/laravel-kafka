@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Services\Kafka\Core\Consumer\ConsumerService;
 use App\Services\Kafka\Enums\AuthTopicsEnum;
-use App\Services\Kafka\Enums\GroupIdEnum;
+use App\Services\Kafka\Enums\ConsumerGroupEnum;
 use App\Services\Kafka\Topics\AuditAuth\V1\Consumers\AuditAuthHandlerConsumer;
 use Carbon\Exceptions\Exception;
 use Illuminate\Console\Command;
@@ -25,7 +25,7 @@ class KafkaConsumerAuditC2Command extends Command
         $this->info("Consumindo mensagens do tópico audit-login-v1 no consumer 2...");
         new ConsumerService(
             [AuthTopicsEnum::AUDIT_LOGIN_V1->value],
-            GroupIdEnum::SERVICE_2->value,
+            ConsumerGroupEnum::SERVICE_2->value,
             new AuditAuthHandlerConsumer()
         )->execute();
     }

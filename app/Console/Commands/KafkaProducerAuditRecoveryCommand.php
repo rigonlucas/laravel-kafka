@@ -2,8 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Services\Kafka\Enums\AuthTopicsEnum;
 use App\Services\Kafka\Topics\AuditAuth\V1\Messages\AuditAccountRecoveryMessage;
-use App\Services\Kafka\Topics\AuditAuth\V1\Producers\RecoveryAccountProducer;
+use App\Services\Kafka\Topics\AuditAuth\V1\Producers\GenericAuthProducer;
 use Illuminate\Console\Command;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Uid\Ulid;
@@ -30,7 +31,7 @@ class KafkaProducerAuditRecoveryCommand extends Command
             accountUuid: $accountUuid
         );
 
-        $return = new RecoveryAccountProducer()->execute($auditMessage);
+        $return = new GenericAuthProducer()->execute($auditMessage, AuthTopicsEnum::AUDIT_RECOVERY_V1);
         $this->info(json_encode($return));
     }
 }

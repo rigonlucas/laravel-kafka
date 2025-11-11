@@ -23,7 +23,7 @@ class KafkaProducerInvalidTopicCommand extends Command
         $auditMessage = new AuditAuthMessage(
             eventId: Ulid::generate(),
             userName: fake()->name(),
-            action: 'login',
+            action: 'topic-nao-implementado',
             timestamp: now(),
             ipAddress: fake()->ipv4(),
             userAgent: fake()->userAgent(),
