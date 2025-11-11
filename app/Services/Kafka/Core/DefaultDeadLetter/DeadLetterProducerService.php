@@ -2,20 +2,24 @@
 
 namespace App\Services\Kafka\Core\DefaultDeadLetter;
 
-use App\Services\Kafka\Enums\AuthTopicsEnum;
+use App\Services\Kafka\Enums\TopicsEnum;
 use Junges\Kafka\Facades\Kafka;
 
 class DeadLetterProducerService
 {
+    /**
+     * @throws \Exception
+     */
     public static function sendToDLQ(
         string $topic,
         array $payload,
         string $key,
+        TopicsEnum $authTopicsEnum,
         array $headers = []
     ): true {
         $broker ??= config('kafka.brokers');
         Kafka::publish(broker: $broker)
-            ->onTopic(topic: AuthTopicsEnum::AUTH_DEAD_LETTER_QUEUE->value)
+            ->onTopic(topic: $authTopicsEnum->value)
             ->withBodyKey(key: 'original_topic', message: $topic)
             ->withBodyKey(key:'payload', message: $payload)
             ->withBodyKey(key: 'key', message: $key)

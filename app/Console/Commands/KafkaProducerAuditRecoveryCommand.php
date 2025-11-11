@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Services\Kafka\Enums\AuthTopicsEnum;
+use App\Services\Kafka\Enums\TopicsEnum;
 use App\Services\Kafka\Topics\AuditAuth\V1\Messages\AuditAccountRecoveryMessage;
 use App\Services\Kafka\Topics\AuditAuth\V1\Producers\GenericAuthProducer;
 use Illuminate\Console\Command;
@@ -33,7 +33,7 @@ class KafkaProducerAuditRecoveryCommand extends Command
 
         $return = new GenericAuthProducer()->execute(
             auditMessage: $auditMessage,
-            authTopicsEnum: AuthTopicsEnum::AUDIT_RECOVERY_V1
+            authTopicsEnum: TopicsEnum::AUDIT_RECOVERY_V1
         );
         $this->info(json_encode($return));
     }

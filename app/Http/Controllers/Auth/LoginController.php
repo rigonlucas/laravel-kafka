@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Services\Kafka\Core\Producer\ProducerService;
-use App\Services\Kafka\Enums\AuthTopicsEnum;
+use App\Services\Kafka\Enums\TopicsEnum;
 use App\Services\Kafka\Topics\AuditAuth\V1\Messages\AuditAuthMessage;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Uuid;
@@ -38,7 +38,7 @@ class LoginController extends Controller
         );
 
         new ProducerService(
-            topic: AuthTopicsEnum::AUDIT_LOGIN_V1->value,
+            topic: TopicsEnum::AUDIT_LOGIN_V1->value,
             message: $auditMessage->getMessage()
         )->execute();
 
