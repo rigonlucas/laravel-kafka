@@ -19,12 +19,13 @@ readonly class AuditAuthHandlerConsumer implements ConsumerMessageHandler
     {
         return match ($message->getTopicName()) {
             TopicsEnum::AUDIT_LOGIN_V1->value => LoginProcess::process(message: $message),
+            TopicsEnum::AUDIT_LOGIN_V1_THROW_ERROR->value => throw new \Exception(message: 'Simulação de erro e envio para DLQ'),
             TopicsEnum::AUDIT_RECOVERY_V1->value => RecoveryProcess::process(message: $message),
             default => DeadLetterProducerService::sendToDLQ(
                 topic: $message->getTopicName(),
                 payload: $message->getBody(),
                 key: $message->getKey(),
-                authTopicsEnum: TopicsEnum::AUTH_DEAD_LETTER_QUEUE,
+                authTopicsEnum: TopicsEnum::AUDIT_LOGIN_V1_DLQ,
                 headers: $message->getHeaders()
             )
         };

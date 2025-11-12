@@ -4,7 +4,8 @@ namespace App\Services\Kafka\Enums;
 
 enum TopicsEnum: string
 {
-    case AUTH_DEAD_LETTER_QUEUE = 'auth-dead-letter-queue';
+    case AUDIT_LOGIN_V1_DLQ = 'auth-login-v1-dlq';
     case AUDIT_LOGIN_V1 = 'auth-login-v1';
+    case AUDIT_LOGIN_V1_THROW_ERROR = 'auth-login-v1-to-throw-error';
     case AUDIT_RECOVERY_V1 = 'auth-recovery-v1';
 }

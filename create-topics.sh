@@ -22,9 +22,12 @@ create_topic() {
 }
 
 # Criações
-create_topic "auth-login-v1"     2 1
-create_topic "auth-recovery-v1"  1 1
-create_topic "auth-dead-letter-queue"  1 1
-create_topic "unknow-topic"       1 1
+create_topic "auth-login-v1" 2 1
+create_topic "auth-login-v1-dlq" 1 1
+create_topic "auth-login-v1-to-throw-error" 1 1
+create_topic "auth-recovery-v1" 1 1
+create_topic "auth-dead-letter-queue" 1 1
+create_topic "unknow-topic" 1 1
+
 
 echo "Criação de tópicos Kafka concluída."
