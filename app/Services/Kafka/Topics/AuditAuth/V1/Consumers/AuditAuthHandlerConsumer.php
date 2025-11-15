@@ -25,7 +25,7 @@ readonly class AuditAuthHandlerConsumer implements ConsumerMessageHandler
                 topic: $message->getTopicName(),
                 payload: $message->getBody(),
                 key: $message->getKey(),
-                authTopicsEnum: TopicsEnum::AUDIT_LOGIN_V1_DLQ,
+                authTopicsEnum: TopicsEnum::AUDIT_DEFAULT_V1_DLQ,
                 headers: $message->getHeaders()
             )
         };
