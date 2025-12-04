@@ -3,6 +3,7 @@
 namespace App\Services\Kafka\Core\Producer;
 
 use App\Jobs\Kafka\AsyncProcessMessageJob;
+use App\Services\Kafka\Core\Adapters\Producers\JungesKafkaProducerAdapter;
 use Illuminate\Support\Facades\Log;
 use Junges\Kafka\Facades\Kafka;
 use Junges\Kafka\Message\Message;
@@ -28,6 +29,14 @@ final class ProducerService
         return $builder->send();
     }
 
+    public function executeAsync(): bool
+    {
+        $builder = $this->resolvePublisher($this->broker, true)
+            ->withMessage(message: $this->message)
+            ->onTopic(topic: $this->topic);
+        return $builder->send();
+    }
+
     /**
      * Em caso de falha na publicação síncrona, tenta publicar de forma assíncrona.
      */
@@ -48,16 +57,13 @@ final class ProducerService
         return true;
     }
 
-    /**
-     * @return \Junges\Kafka\Contracts\MessageProducer
-     */
-    private function resolvePublisher(mixed $broker, bool $async = false): mixed
+    private function resolvePublisher(mixed $broker, bool $async = false): JungesKafkaProducerAdapter
     {
         if ($async) {
-            return Kafka::publishAsync(broker: $broker);
+            return new JungesKafkaProducerAdapter(Kafka::publishAsync(broker: $broker));
         }
 
-        return Kafka::publish(broker: $broker);
+        return new JungesKafkaProducerAdapter(Kafka::publish(broker: $broker));
     }
 
     private function reportKafkaError(?\Exception $syncError): void

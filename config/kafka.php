@@ -45,7 +45,7 @@ return [
      */
     'auto_commit' => env('KAFKA_AUTO_COMMIT', true),
 
-    'sleep_on_error' => env('KAFKA_ERROR_SLEEP', 5),
+    'sleep_on_error' => env('KAFKA_ERROR_SLEEP', 1),
 
     'partition' => env('KAFKA_PARTITION', 0),
 

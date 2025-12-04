@@ -8,7 +8,7 @@ use Carbon\Exceptions\Exception;
 use Junges\Kafka\Exceptions\ConsumerException;
 use Junges\Kafka\Facades\Kafka;
 
-readonly class ConsumerService
+final class ConsumerService
 {
     private mixed $kafka;
 
@@ -16,9 +16,9 @@ readonly class ConsumerService
      * @throws ConsumerException
      */
     public function __construct(
-        private array $topics,
-        private ConsumerGroupEnum $consumerGroup,
-        private ConsumerMessageHandler $messageHandler,
+        private readonly array $topics,
+        private readonly ConsumerGroupEnum $consumerGroup,
+        private readonly ConsumerMessageHandler $messageHandler,
         ?TopicsEnum $deadLetterTopic,
         ?string $broker = null,
     ) {
